@@ -1,6 +1,7 @@
 import random
-from os import system
-
+from os import system, name
+# This single python file covers almost entire basics of Python programming.
+# It includes classes, functions, loops, conditionals, lists, and user input handling.
 class Glass:
     @staticmethod
     def draw(direction=None):
@@ -53,9 +54,14 @@ breakables = [random.choice(pair) for pair in glass_pair]
 num_stages = len(glass_pair)
 status = None
 break_permit = False
+
+# Add cross-platform clear function
+def clear():
+    system('cls' if name == 'nt' else 'clear')
+
 # Main loop for stages
 for stage in range(num_stages):
-    system('cls')  # Clear the console
+    clear()  # Clear the console
     Glass.draw_border()  # Draw the top border
     if stage == 0:
         for n in range(num_stages):
@@ -109,7 +115,7 @@ n = 1
 #Check wheter the player won or lose
 if option not in breakables:
     Glass.draw_border()
-    system('cls')  # Clear the console
+    clear()  # Clear the console
     if status == 'left_stepped':
         Glass.draw('left')
     elif status == 'right_stepped':
@@ -124,7 +130,7 @@ if option not in breakables:
 
 else:
     if option is breakables[-1]: # Checks if the wrong option is last one
-        system('cls')  # Clear the console
+        clear()  # Clear the console
         Glass.draw_border()
         if status == 'left_broke':
             Glass.draw_broke('left')
